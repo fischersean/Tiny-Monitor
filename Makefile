@@ -23,8 +23,10 @@ bundle:
 
 dist:
 	@make bundle
-	codesign  --deep -s seanwfischer@gmail.com dist/$(BUNDLENAME)
+	# Make sure the identity used is the "Developer ID Application" cert
+	codesign  --deep -s Sean\ Fischer dist/$(BUNDLENAME)
 	codesign --verify --verbose dist/$(BUNDLENAME)
+	create-dmg dist/$(BUNDLENAME) dist/
 
 run:
 	./$(DISTNAME)

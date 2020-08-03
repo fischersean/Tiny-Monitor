@@ -45,12 +45,9 @@ func showStats(cm *stats.CPUMonitor, rm *stats.RAMMonitor) {
 	go rm.Start(crm)
 
 	var title string
-	cmStat := "-"
-	rmStat := "-"
 
-	// Block until we can draw the title
-	cmStat = <-ccm
-	rmStat = <-crm
+	cmStat := <-ccm
+	rmStat := <-crm
 	title = tFormat(cmStat, rmStat)
 	systray.SetTitle(title)
 
@@ -169,4 +166,3 @@ func onExit() {
 func Draw() {
 	systray.Run(onReady, onExit)
 }
-

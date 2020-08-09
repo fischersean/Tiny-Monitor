@@ -7,26 +7,25 @@ import (
 	"time"
 )
 
-
-// RAMMonitor defines the data necessary to read stats from the systems memory 
+// RAMMonitor defines the data necessary to read stats from the systems memory
 type RAMMonitor struct {
-    // UpdateInterval is the delay between updates on the channel
+	// UpdateInterval is the delay between updates on the channel
 	UpdateInterval time.Duration
 
-    // Usage is the percent usage of the systems total RAM resources
-	Usage          float64
+	// Usage is the percent usage of the systems total RAM resources
+	Usage float64
 
-    // Prefix is the formatting prefix to be send on the channel via String()
-	Prefix         string
+	// Prefix is the formatting prefix to be send on the channel via String()
+	Prefix string
 
-    // Channel is the channel that data will be sent over
-	Channel        chan string
+	// Channel is the channel that data will be sent over
+	Channel chan string
 
-    // Enabled is the flag to track is the monitor is still needed
-	Enabled        bool
+	// Enabled is the flag to track is the monitor is still needed
+	Enabled bool
 
-    // Relative is the flag to determine if the usage will be a percentage or absolute value
-    Relative bool
+	// Relative is the flag to determine if the usage will be a percentage or absolute value
+	Relative bool
 }
 
 // Stop disables the monitor and allows for the channel to be safely closed
@@ -58,12 +57,12 @@ func (rm *RAMMonitor) String() string {
 func (rm *RAMMonitor) Start(c chan string) error {
 	var stats *mem.VirtualMemoryStat
 	var err error
-    
-    rm.Channel = c
+
+	rm.Channel = c
 	for {
-        if !rm.Enabled {
-            return nil
-        }
+		if !rm.Enabled {
+			return nil
+		}
 		stats, err = mem.VirtualMemory()
 		time.Sleep(rm.UpdateInterval)
 
@@ -71,11 +70,11 @@ func (rm *RAMMonitor) Start(c chan string) error {
 			return err
 		}
 		go func() {
-            // Test to make sure the reciever still wants data. If not, close and return. 
-            // The outer function will return on the next loop
+			// Test to make sure the reciever still wants data. If not, close and return.
+			// The outer function will return on the next loop
 			if !rm.Enabled {
 				close(rm.Channel)
-                return
+				return
 			}
 			if rm.Relative {
 				rm.Usage = stats.UsedPercent

@@ -8,20 +8,20 @@ import (
 
 // CPUMonitor defines the data necessary to read stats from the systems CPU
 type CPUMonitor struct {
-    // UpdateInterval is the delay between updates on the channel
+	// UpdateInterval is the delay between updates on the channel
 	UpdateInterval time.Duration
 
-    // Usage is the percent usage of the systems total CPU resources
-	Usage          float64
+	// Usage is the percent usage of the systems total CPU resources
+	Usage float64
 
-    // Prefix is the formatting prefix to be send on the channel via String()
-	Prefix         string
+	// Prefix is the formatting prefix to be send on the channel via String()
+	Prefix string
 
-    // Channel is the channel that data will be sent over
-	Channel        chan string
+	// Channel is the channel that data will be sent over
+	Channel chan string
 
-    // Enabled is the flag to track is the monitor is still needed
-	Enabled        bool
+	// Enabled is the flag to track is the monitor is still needed
+	Enabled bool
 }
 
 // Stop disables the monitor and allows for the channel to be safely closed

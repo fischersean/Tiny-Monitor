@@ -57,7 +57,6 @@ func TestCPUStart(t *testing.T) {
 	if len(msg) == 0 {
 		t.Fatal("Could not read from channel")
 	}
-    monitor.Stop()
+	monitor.Stop()
 
 }
-

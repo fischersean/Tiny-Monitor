@@ -62,7 +62,6 @@ func TestRAMStart(t *testing.T) {
 		t.Fatal("Could not read from channel")
 	}
 
-    monitor.Stop()
-    
-}
+	monitor.Stop()
 
+}

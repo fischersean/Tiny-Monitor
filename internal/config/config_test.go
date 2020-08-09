@@ -54,10 +54,10 @@ func TestInitFromFile(t *testing.T) {
 
 	}
 
-    tPath := "testconfig.json"
-    createTestData(tPath)
+	tPath := "testconfig.json"
+	createTestData(tPath)
 
-    InitFromFile(tPath)
+	InitFromFile(tPath)
 
 	if CPUUpdateInterval != 6 {
 		t.Fatalf("Expected cpu interval to be 6, got %d", CPUUpdateInterval)
@@ -80,20 +80,20 @@ func TestInitFromFile(t *testing.T) {
 
 }
 
-func TestSave(t *testing.T){
+func TestSave(t *testing.T) {
 
-    SaveLocation = "testconfig.json"
+	SaveLocation = "testconfig.json"
 
-    if err := Save(); err != nil {
-        t.Fatal(err)
-    }
+	if err := Save(); err != nil {
+		t.Fatal(err)
+	}
 
-    _, err := os.Stat(SaveLocation)
+	_, err := os.Stat(SaveLocation)
 
-    if os.IsNotExist(err){
-        t.Fatal("Could not find saved file")
-    }
+	if os.IsNotExist(err) {
+		t.Fatal("Could not find saved file")
+	}
 
-    os.Remove(SaveLocation)
+	os.Remove(SaveLocation)
 
 }

@@ -37,6 +37,7 @@ func setToDefault() {
 	MinInterval = 1
 }
 
+// InitFromFile initializes the app's configuration from the provided JSON file
 func InitFromFile(f string) {
 
 	MinInterval = 1
@@ -72,6 +73,7 @@ func InitFromFile(f string) {
 	RAMDisplayMode = cfig.RAMDisplayMode
 }
 
+// Save writes the current user preferences to the app's save data location
 func Save() (err error) {
 
 	f := SaveLocation

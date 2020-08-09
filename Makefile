@@ -1,4 +1,4 @@
-.PHONY: build clean run dist bundle
+.PHONY: build clean run dist bundle test
 
 GO = go
 BUILDFLAGS = GO11MODULES=1 GOOS=darwin
@@ -12,8 +12,12 @@ RESOURCEPATH = $(DISTPATH)/Resources
 build:
 	$(BUILDFLAGS) $(GO) build -o $(DISTNAME) cmd/$(MODNAME)/main.go 
 
+test:
+	$(GO) test ./...
+
 bundle: 
 	@make build
+	@make test 
 	rm -rf dist/
 	mkdir -p $(EXEPATH)
 	mkdir -p $(RESOURCEPATH)

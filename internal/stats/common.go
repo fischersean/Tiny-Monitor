@@ -6,9 +6,7 @@ package stats
 type Stat interface {
 	// Init creates the readed and sets it's update interval to interval * time.Milliseconds
 	Start(c chan string) error
+    Stop()
 	String() string
-	Enable()
-	Disable()
-	Toggle()
-	UpdateInterval(interval int)
+	ChangeInterval(interval int)
 }

@@ -8,7 +8,7 @@ import (
 )
 
 func toggleStat(item *systray.MenuItem, stat stats.Stat) (err error) {
-	stat.Toggle()
+	stat.Stop()
 	if item.Checked() {
 		item.Uncheck()
 	} else {
